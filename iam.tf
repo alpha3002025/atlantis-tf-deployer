@@ -2,7 +2,7 @@
 # overtake administrator
 #
 
-## (1)
+### Gemini 수정자료 (순환참조 수정코드) ## first try
 resource "aws_iam_role" "atlantis_overtake_admin" {
   name = "atlantis-overtake-admin"
 
@@ -25,7 +25,30 @@ resource "aws_iam_role" "atlantis_overtake_admin" {
     ]
   })
 }
-## end of (1)
+
+
+### Zerone 강의자료 (순환참조 발생코드)
+# resource "aws_iam_role" "atlantis_overtake_admin" {
+#   name = "atlantis-overtake-admin"
+#   path = "/"
+# 
+#   assume_role_policy = jsonencode({
+#     "Version" : "2012-10-17",
+#     "Statement" : [
+#       {
+#         "Sid" : "",
+#         "Effect" : "Allow",
+#         "Principal" : {
+#           "AWS" : [
+#             "arn:aws:iam::${var.account_id.id}:role/atlantis-ecs_task_execution"
+#           ]
+#         },
+#         "Action" : "sts:AssumeRole"
+#       }
+#     ]
+#   })
+# 
+# }
 
 resource "aws_iam_role_policy" "atlantis_overtake_admin" {
   name = "atlantis-overtake-admin-passrole"
