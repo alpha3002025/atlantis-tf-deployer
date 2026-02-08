@@ -17,7 +17,7 @@ public_subnets = ["192.168.11.0/24", "192.168.12.0/24"]
 
 # DNS
 route53_zone_name = "overtake.live"         ## (1) route53 의 도메인
-route53_zone_id   = "Z01434532HN0SX4VDYLJG" ## (2) route 53 내의 (1) 에 대한 zone id
+route53_zone_id   = "Z01434532HN0SX4VDYLJG" ## (2) route 53 내의 (1) 에 대한 zone id 
 
 # ACM (SSL certificate)
 # Specify ARN of an existing certificate or new one will be created and validated using Route53 DNS:
@@ -27,7 +27,7 @@ certificate_arn = ""
 ecs_service_assign_public_ip = true
 
 # Atlantis
-atlantis_allowed_repo_names = ["eks-tf-provisioning"]       ## (3) atlantis 가 검사할 terraform 리포지터리 명
+atlantis_allowed_repo_names = ["eks-tf-provisioning"]       ## (3) atlantis 가 검사할 terraform 리포지터리
 atlantis_repo_whitelist     = ["github.com/alpha3002025/*"] ## (4) atlantis 가 검사할 리포지터리 주소 (여러개를 지정할 수 있다.)
 
 # Specify one of the following block.

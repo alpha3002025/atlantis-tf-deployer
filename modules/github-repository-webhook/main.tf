@@ -1,34 +1,24 @@
-variable "create_github_repository_webhook" {
-  description = "Whether to create Github repository webhook for Atlantis"
-  type        = bool
-  default     = true
+provider "github" {
+  token        = var.github_token
+  organization = var.github_organization
 }
 
-variable "github_token" {
-  description = "Github token to use when creating webhook"
-  type        = string
-  default     = ""
-}
+resource "github_repository_webhook" "this" {
+  count = var.create_github_repository_webhook ? length(var.atlantis_allowed_repo_names) : 0
 
-variable "github_organization" {
-  description = "Github organization to use when creating webhook"
-  type        = string
-  default     = ""
-}
+  repository = var.atlantis_allowed_repo_names[count.index]
 
-variable "atlantis_allowed_repo_names" {
-  description = "List of names of repositories which belong to the organization specified in `github_organization`"
-  type        = list(string)
-}
+  configuration {
+    url          = var.webhook_url
+    content_type = "application/json"
+    insecure_ssl = false
+    secret       = var.webhook_secret
+  }
 
-variable "webhook_url" {
-  description = "Webhook URL"
-  type        = string
-  default     = ""
-}
-
-variable "webhook_secret" {
-  description = "Webhook secret"
-  type        = string
-  default     = ""
+  events = [
+    "issue_comment",
+    "pull_request",
+    "pull_request_review",
+    "pull_request_review_comment",
+  ]
 }

@@ -125,7 +125,7 @@ resource "aws_ssm_parameter" "atlantis_github_user_token" {
 
   name  = var.atlantis_github_user_token_ssm_parameter_name
   type  = "SecureString"
-  value = base64decode(var.atlantis_github_user_token)
+  value = base64decode(var.atlantis_github_user_token) ## (1)
 }
 
 resource "aws_ssm_parameter" "atlantis_gitlab_user_token" {
