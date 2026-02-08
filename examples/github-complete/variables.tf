@@ -18,6 +18,17 @@ variable "atlantis_github_user" {
   type        = string
 }
 
+variable "atlantis_github_user_token" {
+  description = "GitHub token of the user that is running the Atlantis command"
+  type        = string
+}
+
+variable "atlantis_github_user_token_ssm_parameter_name" {
+  description = "Name of SSM parameter to keep atlantis_github_user_token"
+  type        = string
+  default     = "/atlantis/github/user/token"
+}
+
 variable "atlantis_repo_allowlist" {
   description = "List of GitHub repositories that Atlantis will be allowed to access"
   type        = list(string)
