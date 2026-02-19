@@ -49,3 +49,8 @@ atlantis_bitbucket_user_token = ""
 tags = {
   Name = "atlantis"
 }
+
+policies_arn = [
+  "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+  "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+]
